@@ -1,12 +1,14 @@
-var account = new Account(window.location.host === 'accounts.gigavoid.com' ? 'http://accounts-api.gigavoid.com/' : 'http://localhost:3000');
+var account = new Account('http://accounts-api.gigavoid.com/');
 
 account.ready = function() {
     log('Account.js is ready');
-    loggedIn();
+loggedIn();
 }
 
+document.getElementById('oneFormToRuleThemAll').addEventListener('submit', login);
+
 function login() {
-    account.login(prompt('username'), prompt('password'), function (success, response) {
+    account.login(document.getElementById('mail').value, document.getElementById('pw').value, function (success, response) {
         logSR(success, response);
     });
 }

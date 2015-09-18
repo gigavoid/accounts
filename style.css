@@ -1,0 +1,18 @@
+html{
+    font-family: Verdana;
+}
+
+body{
+    margin: 0;
+    background: black;
+}
+
+label {
+    color: #186518;
+}
+
+input {
+    border: 1px solid #186518;
+    border-radius: 3px;
+    background: #1ccd21;
+}

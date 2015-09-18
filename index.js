@@ -1,4 +1,4 @@
-var account = new Account('http://localhost:3000');
+var account = new Account(window.location.host === 'accounts.gigavoid.com' ? 'http://accounts-api.gigavoid.com/' : 'http://localhost:3000');
 
 account.ready = function() {
     log('Account.js is ready');

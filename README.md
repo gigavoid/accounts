@@ -1,2 +1,0 @@
-# accounts
-Gigavoid Account System

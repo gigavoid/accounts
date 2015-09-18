@@ -53,6 +53,12 @@ window.Account = function(accountServer) {
         store('key', undefined);
     };
 
+    self.isEmailTaken = function (email, callback) {
+        post('/emailtaken', {
+            email: email
+        }, callback);
+    };
+
 
 
     function post(api, body, callback) {

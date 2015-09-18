@@ -16,3 +16,15 @@ input {
     border-radius: 3px;
     background: #1ccd21;
 }
+
+.wrapper{
+    margin: auto;
+    max-width: 300px;
+    min-width: 200px;
+    height: auto;
+}
+
+.text{
+    background: #092509;
+    color: #1ccd21;
+}

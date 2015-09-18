@@ -4,13 +4,15 @@ account.ready = function() {
     loggedIn();
 }
 
-document.getElementById('oneFormToRuleThemAll').addEventListener('submit', function() {
+document.getElementById('oneFormToRuleThemAll').addEventListener('submit', function(e) {
     if (document.querySelector('#submit').value === 'Create Account') {
         register();
     }
     else {
         login();
     }
+
+    e.preventDefault();
 });
 
 document.getElementById('mail').addEventListener('blur', function() {

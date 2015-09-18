@@ -28,3 +28,17 @@ input {
     background: #092509;
     color: #1ccd21;
 }
+
+.button{
+    float: right;
+}
+
+.button:hover{
+    float: right;
+    background: #6ede00;
+}
+
+.button:active{
+    float: right;
+    background: #99de00;
+}

@@ -1,46 +1,71 @@
-var account = new Account('http://accounts-api.gigavoid.com/');
+var account = new Account('http://accounts-api.gigavoid.com');
 
 account.ready = function() {
-    log('Account.js is ready');
-loggedIn();
+    loggedIn();
 }
 
-document.getElementById('oneFormToRuleThemAll').addEventListener('submit', login);
+document.getElementById('oneFormToRuleThemAll').addEventListener('submit', function() {
+    if (document.querySelector('#submit').value === 'Create Account') {
+        register();
+    }
+    else {
+        login();
+    }
+});
+
+document.getElementById('mail').addEventListener('blur', function() {
+    account.isEmailTaken(document.querySelector('#mail').value, function (success, data) {
+        console.log(success, data.taken);
+        if (success) {
+            document.querySelector('#submit').value = data.taken ? 'Log In' : 'Create Account';
+        }
+    });
+});
+
+document.querySelector('.logout').addEventListener('click', function() {
+    account.signOut();
+    setLoggedIn(false);
+});
 
 function login() {
     account.login(document.getElementById('mail').value, document.getElementById('pw').value, function (success, response) {
-        logSR(success, response);
+        setLoggedIn(success);
+        if (!success) {
+            alert(JSON.stringify(response));
+        }
     });
 }
 
 function register() {
-    account.register(prompt('username'), prompt('password'), function (success, response) {
-        logSR(success, response);
+    account.register(document.getElementById('mail').value, document.getElementById('pw').value, function (success, response) {
+        setLoggedIn(success);
+        if (!success) {
+            alert(JSON.stringify(response));
+        }
     });
 }
 
 function loggedIn() {
-    account.isLoggedIn(function (isLoggedIn) {
-        log('Is logged in: ' + isLoggedIn);
-    });
+    account.isLoggedIn(setLoggedIn);
+}
+
+function setLoggedIn(isLoggedIn) {
+    if (!isLoggedIn) {
+        document.querySelector('#oneFormToRuleThemAll').className = '';
+        document.querySelector('#membersArea').className = 'hidden';
+    }
+    else {
+        document.querySelector('#oneFormToRuleThemAll').className = 'hidden';
+        document.querySelector('#membersArea').className = '';
+    }
 }
 
 function verify() {
     account.verify(function (success, response) {
-        logSR(success, response);
     });
 }
 
 function signOut() {
     account.signOut();
-    log('Signed out');
 }
 
-function logSR(success, response) {
-    console.log(success, response);
-    log('account.login: ' + success + ' ' + JSON.stringify(response));
-}
-
-function log(msg) {
-    document.querySelector('#log').innerHTML += '<p>' + msg + '</p>';
-}

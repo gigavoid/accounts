@@ -16,3 +16,7 @@ input {
     border-radius: 3px;
     background: #1ccd21;
 }
+
+.hidden {
+    display: none;
+}

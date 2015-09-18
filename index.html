@@ -1,10 +1,3 @@
-GIGAVOID ACCOUNTS
-
-<a href='#' onclick='login()'>Login</a><br>
-<a href='#' onclick='register()'>Register</a><br>
-<a href='#' onclick='loggedIn()'>LoggedIn?</a><br>
-<a href='#' onclick='verify()'>Verify</a><br>
-<a href='#' onclick='signOut()'>Sign Out</a><br>
 <html !DOCTYPE>
     <head>
         <title>GIGAVOID ACCOUNTS</title>
@@ -12,18 +5,20 @@ GIGAVOID ACCOUNTS
     </head>
     <body>
         <div class="wrapper">
-            <form id="oneFormToRuleThemAll">
+            <form id="oneFormToRuleThemAll" class="hidden">
                 <label for="mail">E-mail:</label><br>
                 <input id="mail" type="text" placeholder="E-mail"><br>
                 <label for="pw">Password</label><br>
                 <input id="pw" type="password"><br>
                 <input id="staylogged" type="checkbox">
                 <label for="staylogged">Keep me signed in.</label><br>
-                <input type="submit" value="Log In">
+                <input id="submit" type="submit" value="Log In">
             </form>
-        </div>
 
-        <div id="log"></div>
+            <div id="membersArea" class="hidden">
+                <button class='logout'>Logout</button>
+            </div>
+        </div>
 
         <script src='/account.js'></script>
         <script src='/index.js'></script>

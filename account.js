@@ -20,6 +20,12 @@ window.Account = function(accountServer) {
         });
     };
 
+    self.getKey = function(cb) {
+        get('key', function (resp) {
+            cb(resp);
+        });
+    };
+
     self.register = function(username, password, cb) {
         post('/register', {
             username: username,

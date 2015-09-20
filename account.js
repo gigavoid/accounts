@@ -37,13 +37,22 @@ window.Account = function(accountServer) {
                 store('key', resp.key);
             }
         });
-    }
+    };
 
     self.isLoggedIn = function (callback) {
         get('key', function (resp) {
             callback(!!resp);
         });
-    }
+    };
+
+    self.setDisplayName = function(displayName, callback) {
+        get('key', function (key) {
+            post('/setDisplayName', {
+                key: key,
+                displayName: displayName
+            }, callback);
+        });
+    };
 
     self.verify = function (cb) {
         get('key', function (key) {

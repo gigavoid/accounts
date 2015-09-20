@@ -29,6 +29,12 @@ document.querySelector('.logout').addEventListener('click', function() {
     setLoggedIn(false);
 });
 
+document.querySelector('.setDisplayName').addEventListener('click', function() {
+    account.setDisplayName(prompt('Your display name'), function(err, res) {
+        alert(err + ': ' + JSON.stringify(res));
+    });
+});
+
 function login() {
     account.login(document.getElementById('mail').value, document.getElementById('pw').value, function (success, response) {
         setLoggedIn(success);
